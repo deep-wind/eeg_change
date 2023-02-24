@@ -79,7 +79,7 @@ fig = px.bar(df, x=channels, y=beta_power, color=channels,
 fig.show()
 
 
-no=len(df1)
+no=len(df)
 f, psd = ss.welch(df['channel1'], fs=250,nperseg=61302)
 alpha_power1 = np.sum(psd[(f >= 8) & (f <= 13)]) # Compute the alpha wave power
 
@@ -114,7 +114,7 @@ fig = px.bar(df, x=channels, y=alpha_power, color=channels,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
 
-no=len(df1)
+no=len(df)
 f, psd = ss.welch(df['channel1'], fs=250,nperseg=61302)
 delta_power1 = np.sum(psd[(f >= 0.5) & (f <= 4)]) 
 
