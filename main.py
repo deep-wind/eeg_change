@@ -155,5 +155,39 @@ fig.show()
 
 st.write(fig)
 
+left_alpha=np.sum([alpha_power1,alpha_power3,alpha_power5,alpha_power7])
+right_alpha=np.sum([alpha_power2,alpha_power4,alpha_power6,alpha_power8])
+
+left_beta=np.sum([beta_power1,beta_power3,beta_power5,beta_power7])
+right_beta=np.sum([beta_power2,beta_power4,beta_power6,beta_power8])
+
+left_delta=np.sum([delta_power1,delta_power3,delta_power5,delta_power7])
+right_delta=np.sum([delta_power2,delta_power4,delta_power6,delta_power8])
+
+import plotly.graph_objects as px
+
+x = ['left', 'right']
+ 
+plot = px.Figure(data=[px.Bar(
+    name = 'alpha',
+    x = x,
+    y = [left_alpha,right_alpha]
+   ),
+    px.Bar(
+    name = 'beta',
+    x = x,
+    y = [left_beta,right_beta]
+   ),
+        px.Bar(
+    name = 'delta',
+    x = x,
+    y = [left_delta,right_delta]
+   ),                   
+                       
+])
+                  
+plot.show()
+
+st.write(plot)
 
 
