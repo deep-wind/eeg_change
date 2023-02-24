@@ -43,7 +43,7 @@ df['channel8'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel8']))
 
 channels=['FP1','FP2','C3','C4','T5','T6','O1','O2']
 
-no=len(df1)
+no=len(df)
 f, psd = ss.welch(df['channel1'], fs=250,nperseg=61302)
 beta_power1 = np.sum(psd[(f >= 13) & (f <= 22)]) # Compute the beta wave power
 
