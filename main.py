@@ -228,7 +228,7 @@ plot = px.Figure(data=[px.Bar(
     y = [left_delta,right_delta]
    ),                   
          px.Bar(
-    name = 'delta',
+    name = 'gamma',
     x = x,
     y = [left_gamma,right_gamma]
    ),  
