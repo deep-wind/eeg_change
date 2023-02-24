@@ -43,6 +43,8 @@ df['channel6'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel6']))
 df['channel7'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel7']))
 df['channel8'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel8']))
 
+st.write(df)
+
 channels=['FP1','FP2','C3','C4','T5','T6','O1','O2']
 
 no=len(df)
