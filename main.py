@@ -236,8 +236,8 @@ right_delta=np.sum([delta_power2,delta_power4,delta_power6,delta_power8])
 left_gamma=np.sum([gamma_power1,gamma_power3,gamma_power5,gamma_power7])
 right_gamma=np.sum([gamma_power2,gamma_power4,gamma_power6,gamma_power8])
 
-theta_gamma=np.sum([theta_power1,theta_power3,theta_power5,theta_power7])
-theta_gamma=np.sum([theta_power2,theta_power4,theta_power6,theta_power8])
+left_theta=np.sum([theta_power1,theta_power3,theta_power5,theta_power7])
+right_theta=np.sum([theta_power2,theta_power4,theta_power6,theta_power8])
 
 
 import plotly.graph_objects as px
