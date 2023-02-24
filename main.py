@@ -77,7 +77,7 @@ import plotly.express as px
 fig = px.bar(df, x=channels, y=beta_power, color=channels,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
-
+st.write(fig)
 
 no=len(df)
 f, psd = ss.welch(df['channel1'], fs=250,nperseg=61302)
@@ -113,7 +113,7 @@ import plotly.express as px
 fig = px.bar(df, x=channels, y=alpha_power, color=channels,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
-
+st.write(fig)
 no=len(df)
 f, psd = ss.welch(df['channel1'], fs=250,nperseg=61302)
 delta_power1 = np.sum(psd[(f >= 0.5) & (f <= 4)]) 
@@ -151,7 +151,7 @@ fig = px.bar(df, x=channels, y=delta_power, color=channels,
 fig.show()
 
 
-
+st.write(fig)
 
 
 
