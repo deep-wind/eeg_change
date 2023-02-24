@@ -122,28 +122,28 @@ st.write(fig)
 
 no=len(df)
 f, psd = ss.welch(df['channel1'], fs=250,nperseg=61302)
-gamma_power1 = np.sum(psd[(f >= 30 & (f <= 100)]) # Compute the alpha wave power
+gamma_power1 = np.sum(psd[(f >= 30) & (f <= 100)])  # Compute the alpha wave power
 
 f, psd = ss.welch(df['channel2'], fs=250,nperseg=61302)
-gamma_power2 = np.sum(psd[(f >= 30 & (f <= 100)]) 
+gamma_power2 = np.sum(psd[(f >= 30 )& (f <= 100)]) 
 
 f, psd = ss.welch(df['channel3'], fs=250,nperseg=61302)
-gamma_power3 = np.sum(psd[(f >= 30 & (f <= 100)]) 
+gamma_power3 = np.sum(psd[(f >= 30) & (f <= 100)]) 
 
 f, psd = ss.welch(df['channel4'], fs=250,nperseg=61302)
-gamma_power4 = np.sum(psd[(f >= 30 & (f <= 100)]) 
+gamma_power4 = np.sum(psd[(f >= 30) & (f <= 100)]) 
 
 f, psd = ss.welch(df['channel5'], fs=250,nperseg=61302)
-gamma_power5 = np.sum(psd[(f >= 30 & (f <= 100)]) 
+gamma_power5 = np.sum(psd[(f >= 30) & (f <= 100)]) 
 
 f, psd = ss.welch(df['channel6'], fs=250,nperseg=61302)
-gamma_power6 = np.sum(psd[(f >= 30 & (f <= 100)]) 
+gamma_power6 = np.sum(psd[(f >= 30) & (f <= 100)]) 
 
 f, psd = ss.welch(df['channel7'], fs=250,nperseg=61302)
-gamma_power7 = np.sum(psd[(f >= 30 & (f <= 100)]) 
+gamma_power7 = np.sum(psd[(f >= 30) & (f <= 100)]) 
 
 f, psd = ss.welch(df['channel8'], fs=250,nperseg=61302)
-gamma_power8 = np.sum(psd[(f >= 30 & (f <= 100)])  
+gamma_power8 = np.sum(psd[(f >= 30) & (f <= 100)])  
 
 gamma_power=[gamma_power1,gamma_power2,gamma_power3,gamma_power4,gamma_power5,gamma_power6,gamma_power7,gamma_power8]
 
