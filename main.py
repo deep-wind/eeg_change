@@ -205,6 +205,9 @@ right_beta=np.sum([beta_power2,beta_power4,beta_power6,beta_power8])
 left_delta=np.sum([delta_power1,delta_power3,delta_power5,delta_power7])
 right_delta=np.sum([delta_power2,delta_power4,delta_power6,delta_power8])
 
+left_gamma=np.sum([gamma_power1,gamma_power3,gamma_power5,gamma_power7])
+right_gamma=np.sum([gamma_power2,gamma_power4,gamma_power6,gamma_power8])
+
 import plotly.graph_objects as px
 
 x = ['left', 'right']
@@ -224,6 +227,11 @@ plot = px.Figure(data=[px.Bar(
     x = x,
     y = [left_delta,right_delta]
    ),                   
+         px.Bar(
+    name = 'delta',
+    x = x,
+    y = [left_gamma,right_gamma]
+   ),  
                        
 ])
                   
