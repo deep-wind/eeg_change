@@ -186,10 +186,38 @@ delta_power=[delta_power1,delta_power2,delta_power3,delta_power4,delta_power5,de
 
 print(delta_power1,delta_power2,delta_power3,delta_power4,delta_power5,delta_power6,delta_power7,delta_power8)
 
+no=len(df)
+f, psd = ss.welch(df['channel1'], fs=250,nperseg=61302)
+theta_power1 = np.sum(psd[(f >= 4) & (f <= 7)]) 
 
+f, psd = ss.welch(df['channel2'], fs=250,nperseg=61302)
+theta_power2 = np.sum(psd[(f >= 4) & (f <= 7)]) 
+
+f, psd = ss.welch(df['channel3'], fs=250,nperseg=61302)
+theta_power3 = np.sum(psd[(f >= 4) & (f <= 7)]) 
+
+f, psd = ss.welch(df['channel4'], fs=250,nperseg=61302)
+theta_power4 = np.sum(psd[(f >= 4) & (f <= 7)]) 
+
+f, psd = ss.welch(df['channel5'], fs=250,nperseg=61302)
+theta_power5 = np.sum(psd[(f >= 4) & (f <= 7)]) 
+
+f, psd = ss.welch(df['channel6'], fs=250,nperseg=61302)
+theta_power6 = np.sum(psd[(f >= 4) & (f <= 7)]) 
+
+f, psd = ss.welch(df['channel7'], fs=250,nperseg=61302)
+theta_power7 = np.sum(psd[(f >= 4) & (f <= 7)]) 
+
+f, psd = ss.welch(df['channel8'], fs=250,nperseg=61302)
+theta_power8 = np.sum(psd[(f >= 4) & (f <= 7)])   
+
+theta_power=[theta_power1,theta_power2,theta_power3,theta_power4,theta_power5,theta_power6,theta_power7,theta_power8]
+
+
+      
 import plotly.express as px
 
-fig = px.bar(df, x=channels, y=delta_power, color=channels,
+fig = px.bar(df, x=channels, y=theta_power, color=channels,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
 
@@ -207,6 +235,10 @@ right_delta=np.sum([delta_power2,delta_power4,delta_power6,delta_power8])
 
 left_gamma=np.sum([gamma_power1,gamma_power3,gamma_power5,gamma_power7])
 right_gamma=np.sum([gamma_power2,gamma_power4,gamma_power6,gamma_power8])
+
+theta_gamma=np.sum([theta_power1,theta_power3,theta_power5,theta_power7])
+theta_gamma=np.sum([theta_power2,theta_power4,theta_power6,theta_power8])
+
 
 import plotly.graph_objects as px
 
@@ -232,7 +264,11 @@ plot = px.Figure(data=[px.Bar(
     x = x,
     y = [left_gamma,right_gamma]
    ),  
-                       
+          px.Bar(
+    name = 'gamma',
+    x = x,
+    y = [left_theta,right_theta]
+   ),                       
 ])
                   
 plot.show()
