@@ -178,7 +178,9 @@ print(beta_power1,beta_power2,beta_power3,beta_power4,beta_power5,beta_power6,be
 import plotly.express as px
 
 fig = px.bar(df, x=channels, y=beta_power, color=channels,
-              pattern_shape_sequence=[".", "x", "+"])
+              pattern_shape_sequence=[".", "x", "+"],labels={
+                     "channels": "channels",
+                     "beta_power": "beta_power"})
 fig.show()
 
 #with st.beta_expander("Write a review 📝"):
