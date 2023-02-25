@@ -181,7 +181,7 @@ fig = px.bar(df, x=channels, y=beta_power, color=channels,
 fig.show()
 
 #with st.beta_expander("Write a review 📝"):
-st.pyplot(fig)
+st.write(fig)
 plt.figure(figsize=[6.4, 2.4])  
 for column in beta_bands[['beta_power_1','beta_power_2','beta_power_3','beta_power_4','beta_power_5','beta_power_6','beta_power_7','beta_power_8']]:    
     plt.plot(beta_bands[column][0:100],label=column)
