@@ -16,11 +16,7 @@ if uploaded_file is not None:
    try:
       df = pd.read_csv(uploaded_file)
       st.write(df)
-
-   except Exception as e:       
-     df = pd.read_excel(uploaded_file)       
-     st.write(df)
-           
+      
 df = pd.read_csv("priyadharshini_1.txt",skiprows=6,header=None)
 df.columns=['index','channel1','channel2','channel3','channel4','channel5','channel6','channel7','channel8','acc1','acc2','acc3','time_std','timestamp']
 df.drop(['index'],axis=1,inplace=True)
@@ -64,6 +60,7 @@ channels=['FP1','FP2','C3','C4','T5','T6','O1','O2']
 
 no=len(df)
 f, psd = ss.welch(df['channel1'], fs=250,nperseg=61302)
+st.write(psd[(f >= 13) & (f <= 22)])
 beta_power1 = np.sum(psd[(f >= 13) & (f <= 22)]) # Compute the beta wave power
 
 f, psd = ss.welch(df['channel2'], fs=250,nperseg=61302)
