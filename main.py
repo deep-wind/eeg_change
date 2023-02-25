@@ -375,27 +375,27 @@ import plotly.graph_objects as px
 x = ['left', 'right']
  
 plot = px.Figure(data=[px.Bar(
-    name = 'alpha',
+    name = 'alpha (Relax)',
     x = x,
     y = [left_alpha,right_alpha]
    ),
     px.Bar(
-    name = 'beta',
+    name = 'beta (Engaged)',
     x = x,
     y = [left_beta,right_beta]
    ),
         px.Bar(
-    name = 'delta',
+    name = 'delta (Deep sleep)',
     x = x,
     y = [left_delta,right_delta]
    ),                   
          px.Bar(
-    name = 'gamma',
+    name = 'gamma (Concentration)',
     x = x,
     y = [left_gamma,right_gamma]
    ),  
           px.Bar(
-    name = 'gamma',
+    name = 'theta (Dowsy)',
     x = x,
     y = [left_theta,right_theta]
    ),                       
