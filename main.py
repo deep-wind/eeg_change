@@ -141,13 +141,12 @@ alpha_bands = pd.DataFrame(alpha, columns = ['alpha_power_1','alpha_power_2','al
 beta_bands = pd.DataFrame(beta, columns = ['beta_power_1','beta_power_2','beta_power_3','beta_power_4','beta_power_5','beta_power_6','beta_power_7','beta_power_8'])
 gamma_bands = pd.DataFrame(gamma, columns = ['gamma_power_1','gamma_power_2','gamma_power_3','gamma_power_4','gamma_power_5','gamma_power_6','gamma_power_7','gamma_power_8'])
 theta_bands = pd.DataFrame(theta, columns = ['theta_power_1','theta_power_2','theta_power_3','theta_power_4','theta_power_5','theta_power_6','theta_power_7','theta_power_8'])
-st.write(beta_bands)
+#st.write(beta_bands)
 
 channels=['FP1','FP2','C3','C4','T5','T6','O1','O2']
 
 no=len(df)
 f, psd = ss.welch(df['channel1'], fs=250,nperseg=61302)
-st.write(psd[(f >= 13) & (f <= 22)])
 beta_power1 = np.sum(psd[(f >= 13) & (f <= 22)]) # Compute the beta wave power
 
 f, psd = ss.welch(df['channel2'], fs=250,nperseg=61302)
@@ -176,11 +175,9 @@ beta_power=[beta_power1,beta_power2,beta_power3,beta_power4,beta_power5,beta_pow
 print(beta_power1,beta_power2,beta_power3,beta_power4,beta_power5,beta_power6,beta_power7,beta_power8)
 
 import plotly.express as px
-
+px.figure(figsize=[5.4, 2.4])  
 fig = px.bar(df, x=channels, y=beta_power, color=channels,
-              pattern_shape_sequence=[".", "x", "+"],labels={
-                     "channels": "channels",
-                     "beta_power": "beta_power"})
+              pattern_shape_sequence=[".", "x", "+"])
 fig.show()
 
 #with st.beta_expander("Write a review 📝"):
