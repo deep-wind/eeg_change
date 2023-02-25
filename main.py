@@ -188,7 +188,7 @@ for column in beta_bands[['beta_power_1','beta_power_2','beta_power_3','beta_pow
     plt.xlabel("Time / s")
     plt.ylabel("beta power")
     plt.legend(loc="lower center", bbox_to_anchor=[0.5, 1],ncol=2, fontsize="smaller")
- st.pyplot(plt)
+st.pyplot(plt)
 
 
 no=len(df)
