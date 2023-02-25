@@ -175,7 +175,7 @@ beta_power=[beta_power1,beta_power2,beta_power3,beta_power4,beta_power5,beta_pow
 print(beta_power1,beta_power2,beta_power3,beta_power4,beta_power5,beta_power6,beta_power7,beta_power8)
 
 import plotly.express as px
-px.figure(figsize=[5.4, 2.4])  
+
 fig = px.bar(df, x=channels, y=beta_power, color=channels,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
@@ -183,7 +183,7 @@ fig.show()
 #with st.beta_expander("Write a review 📝"):
 col1,col2 = st.beta_columns(2) 
 with col1:
-   st.write(fig)
+   st.pyplot(fig)
 with col2:
    #plt.figure(figsize=[6.4, 2.4])  
    plt.figure(figsize=[6.4, 2.4])
