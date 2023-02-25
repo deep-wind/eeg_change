@@ -343,7 +343,7 @@ fig = px.bar(df, x=channels, y=theta_power, color=channels,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
 
-st.info("Theta waves)
+st.info("Theta waves")
 st.write(fig)
 plt.figure(figsize=[6.4, 2.4])  
 for column in theta_bands[['theta_power_1','theta_power_2','theta_power_3','theta_power_4','theta_power_5','theta_power_6','theta_power_7','theta_power_8']]:    
