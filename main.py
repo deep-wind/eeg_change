@@ -192,7 +192,7 @@ with col2:
        plt.xlabel("Time / s")
        plt.ylabel("beta power")
        plt.legend(loc="lower center", bbox_to_anchor=[0.5, 1],ncol=2, fontsize="smaller")
-       st.write(plt)
+       st.write(plt.plot(beta_bands[column][0:100],label=column))
 
 
 no=len(df)
