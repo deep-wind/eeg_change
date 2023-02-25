@@ -6,7 +6,7 @@ from scipy import signal
 import streamlit as st
 
 st.markdown("<h1 style='text-align:center; color:white;background-color:black;font-size:14pt'>📂 Upload your CSV or Excel file. (200MB max) 📂</h1>", unsafe_allow_html=True)
-uploaded_file = st.file_uploader(label="",type=['csv', 'xlsx'])
+uploaded_file = st.file_uploader(label="",type=['txt'])
 
 
 global df
