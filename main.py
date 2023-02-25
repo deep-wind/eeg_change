@@ -14,7 +14,7 @@ if uploaded_file is not None:
    print(uploaded_file)
    
    try:
-      df = pd.read_csv(uploaded_file)
+      df = pd.read_csv(uploaded_file,skiprows=6,header=None)
       st.write(df)
    except:
       st.write("file not found")
