@@ -181,17 +181,14 @@ fig = px.bar(df, x=channels, y=beta_power, color=channels,
 fig.show()
 
 #with st.beta_expander("Write a review 📝"):
-col1,col2 = st.beta_columns(2) 
-with col1:
-   st.pyplot(fig)
-with col2:
-   #plt.figure(figsize=[6.4, 2.4])  
-   plt.figure(figsize=[6.4, 2.4])
-   plt.plot(beta_bands['beta_power_8'][0:100], label="beta wave")
-   plt.xlabel("Time / s")
-   plt.ylabel("power")
-   plt.legend(loc="lower center", bbox_to_anchor=[0.5, 1],ncol=2, fontsize="smaller")
-   st.pyplot(plt)
+st.pyplot(fig)
+plt.figure(figsize=[6.4, 2.4])  
+for column in beta_bands[['beta_power_1','beta_power_2','beta_power_3','beta_power_4','beta_power_5','beta_power_6','beta_power_7','beta_power_8']]:    
+    plt.plot(beta_bands[column][0:100],label=column)
+    plt.xlabel("Time / s")
+    plt.ylabel("beta power")
+    plt.legend(loc="lower center", bbox_to_anchor=[0.5, 1],ncol=2, fontsize="smaller")
+ st.pyplot(plt)
 
 
 no=len(df)
