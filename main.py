@@ -16,6 +16,8 @@ if uploaded_file is not None:
    try:
       df = pd.read_csv(uploaded_file)
       st.write(df)
+   except:
+      st.write("file not found")
       
 df = pd.read_csv("priyadharshini_1.txt",skiprows=6,header=None)
 df.columns=['index','channel1','channel2','channel3','channel4','channel5','channel6','channel7','channel8','acc1','acc2','acc3','time_std','timestamp']
