@@ -179,7 +179,7 @@ import plotly.express as px
 fig = px.bar(df, x=channels, y=beta_power, color=channels,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
-
+st.info("BETA waves")
 #with st.beta_expander("Write a review 📝"):
 st.write(fig)
 plt.figure(figsize=[6.4, 2.4])  
@@ -225,7 +225,15 @@ import plotly.express as px
 fig = px.bar(df, x=channels, y=alpha_power, color=channels,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
+st.info("Alpha waves")
 st.write(fig)
+plt.figure(figsize=[6.4, 2.4])  
+for column in alpha_bands[['alpha_power_1','alpha_power_2','alpha_power_3','alpha_power_4','alpha_power_5','alpha_power_6','alpha_power_7','alpha_power_8']]:    
+    plt.plot(alpha_bands[column][0:100],label=column)
+    plt.xlabel("Time / s")
+    plt.ylabel("alpha power")
+    plt.legend(loc="lower center", bbox_to_anchor=[0.5, 1],ncol=2, fontsize="smaller")
+st.pyplot(plt)
 
 
 no=len(df)
@@ -261,9 +269,15 @@ import plotly.express as px
 fig = px.bar(df, x=channels, y=gamma_power, color=channels,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
+st.info("Gamma waves")
 st.write(fig)
-
-
+plt.figure(figsize=[6.4, 2.4])  
+for column in gamma_bands[['gamma_power_1','gamma_power_2','gamma_power_3','gamma_power_4','gamma_power_5','gamma_power_6','gamma_power_7','gamma_power_8']]:    
+    plt.plot(gamma_bands[column][0:100],label=column)
+    plt.xlabel("Time / s")
+    plt.ylabel("gamma power")
+    plt.legend(loc="lower center", bbox_to_anchor=[0.5, 1],ncol=2, fontsize="smaller")
+st.pyplot(plt)
 
 no=len(df)
 f, psd = ss.welch(df['channel1'], fs=250,nperseg=61302)
@@ -329,9 +343,17 @@ fig = px.bar(df, x=channels, y=theta_power, color=channels,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
 
-
+st.info("Theta waves)
 st.write(fig)
+plt.figure(figsize=[6.4, 2.4])  
+for column in theta_bands[['theta_power_1','theta_power_2','theta_power_3','theta_power_4','theta_power_5','theta_power_6','theta_power_7','theta_power_8']]:    
+    plt.plot(theta_bands[column][0:100],label=column)
+    plt.xlabel("Time / s")
+    plt.ylabel("theta power")
+    plt.legend(loc="lower center", bbox_to_anchor=[0.5, 1],ncol=2, fontsize="smaller")
+st.pyplot(plt)   
 
+      
 left_alpha=np.sum([alpha_power1,alpha_power3,alpha_power5,alpha_power7])
 right_alpha=np.sum([alpha_power2,alpha_power4,alpha_power6,alpha_power8])
 
