@@ -58,6 +58,91 @@ df['channel8'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel8']))
 
 st.write(df)
 
+from scipy.integrate import simps
+import scipy.stats as sst
+from matplotlib.mlab import psd
+
+def bandpower(trace,band):
+    [a1,f1]=psd(trace[~np.isnan(trace)],512,Fs=250)
+    #print(a1,f1)
+    total_power1 = simps(a1, dx=0.1)
+    #print(total_power1)
+    ap1 = simps(a1[(f1>band[0]) & (f1<band[1])], dx=0.1)
+    return ap1/total_power1
+    
+alpha = np.zeros((600,8))
+beta = np.zeros((600,8))
+gamma = np.zeros((600,8))
+theta = np.zeros((600,8))
+
+c=0
+for i in np.arange(0,61301,250):
+    
+    X1=df['channel1']
+    X2=df['channel2']
+    X3=df['channel3']
+    X4=df['channel4']
+    X5=df['channel5']    
+    X6=df['channel6']
+    X7=df['channel7']
+    X8=df['channel8']
+    
+    X1=X1[i:i+250]
+    X2=X2[i:i+250]
+    X3=X3[i:i+250]
+    X4=X4[i:i+250]
+    X5=X5[i:i+250]
+    X6=X6[i:i+250]
+    X7=X7[i:i+250]  
+    X8=X8[i:i+250] 
+    
+    alpha[c,0] = bandpower(X1,[8,12])
+    alpha[c,1] = bandpower(X2,[8,12])
+    alpha[c,2] = bandpower(X3,[8,12])
+    alpha[c,3] = bandpower(X4,[8,12])
+    alpha[c,4] = bandpower(X5,[8,12])
+    alpha[c,5] = bandpower(X6,[8,12])
+    alpha[c,6] = bandpower(X7,[8,12])
+    alpha[c,7] = bandpower(X8,[8,12])
+    
+    beta[c,0] = bandpower(X1,[12,30])
+    beta[c,1] = bandpower(X2,[12,30])
+    beta[c,2] = bandpower(X3,[12,30])
+    beta[c,3] = bandpower(X4,[12,30])
+    beta[c,4] = bandpower(X5,[12,30])
+    beta[c,5] = bandpower(X6,[12,30])
+    beta[c,6] = bandpower(X7,[12,30])
+    beta[c,7] = bandpower(X8,[12,30])
+
+        
+    gamma[c,0] = bandpower(X1,[30,100])
+    gamma[c,1] = bandpower(X2,[30,100])
+    gamma[c,2] = bandpower(X3,[30,100])
+    gamma[c,3] = bandpower(X4,[30,100])
+    gamma[c,4] = bandpower(X5,[30,100])
+    gamma[c,5] = bandpower(X6,[30,100])
+    gamma[c,6] = bandpower(X7,[30,100])
+    gamma[c,7] = bandpower(X8,[30,100])
+    
+        
+    theta[c,0] = bandpower(X1,[4,7])
+    theta[c,1] = bandpower(X2,[4,7])
+    theta[c,2] = bandpower(X3,[4,7])
+    theta[c,3] = bandpower(X4,[4,7])
+    theta[c,4] = bandpower(X5,[4,7])
+    theta[c,5] = bandpower(X6,[4,7])
+    theta[c,6] = bandpower(X7,[4,7])
+    theta[c,7] = bandpower(X8,[4,7])
+    
+    
+    c+=1
+    
+alpha_bands = pd.DataFrame(alpha, columns = ['alpha_power_1','alpha_power_2','alpha_power_3','alpha_power_4','alpha_power_5','alpha_power_6','alpha_power_7','alpha_power_8'])
+beta_bands = pd.DataFrame(beta, columns = ['beta_power_1','beta_power_2','beta_power_3','beta_power_4','beta_power_5','beta_power_6','beta_power_7','beta_power_8'])
+gamma_bands = pd.DataFrame(gamma, columns = ['gamma_power_1','gamma_power_2','gamma_power_3','gamma_power_4','gamma_power_5','gamma_power_6','gamma_power_7','gamma_power_8'])
+theta_bands = pd.DataFrame(theta, columns = ['theta_power_1','theta_power_2','theta_power_3','theta_power_4','theta_power_5','theta_power_6','theta_power_7','theta_power_8'])
+
+
 channels=['FP1','FP2','C3','C4','T5','T6','O1','O2']
 
 no=len(df)
@@ -95,7 +180,14 @@ import plotly.express as px
 fig = px.bar(df, x=channels, y=beta_power, color=channels,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
-st.write(fig)
+
+#with st.beta_expander("Write a review 📝"):
+col1,col2 = st.beta_columns(2) 
+with col1:
+   st.write(fig)
+with col2:
+   st.write(fig)
+
 
 no=len(df)
 f, psd = ss.welch(df['channel1'], fs=250,nperseg=61302)
