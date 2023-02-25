@@ -141,7 +141,7 @@ alpha_bands = pd.DataFrame(alpha, columns = ['alpha_power_1','alpha_power_2','al
 beta_bands = pd.DataFrame(beta, columns = ['beta_power_1','beta_power_2','beta_power_3','beta_power_4','beta_power_5','beta_power_6','beta_power_7','beta_power_8'])
 gamma_bands = pd.DataFrame(gamma, columns = ['gamma_power_1','gamma_power_2','gamma_power_3','gamma_power_4','gamma_power_5','gamma_power_6','gamma_power_7','gamma_power_8'])
 theta_bands = pd.DataFrame(theta, columns = ['theta_power_1','theta_power_2','theta_power_3','theta_power_4','theta_power_5','theta_power_6','theta_power_7','theta_power_8'])
-
+st.write(beta_bands)
 
 channels=['FP1','FP2','C3','C4','T5','T6','O1','O2']
 
