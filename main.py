@@ -189,12 +189,12 @@ with col1:
    st.write(fig)
 with col2:
    #plt.figure(figsize=[6.4, 2.4])  
-   for column in beta_bands[['beta_power_1','beta_power_2','beta_power_3','beta_power_4','beta_power_5','beta_power_6','beta_power_7','beta_power_8']]:    
-       px.line(beta_bands[column][0:100])
-      # px.xlabel("Time / s")
-       #px.ylabel("beta power")
-       #px.legend(loc="lower center", bbox_to_anchor=[0.5, 1],ncol=2, fontsize="smaller")
-   st.pyplot(px)
+   plt.figure(figsize=[6.4, 2.4])
+   plt.plot(beta_bands['beta_power_8'][0:100], label="beta wave")
+   plt.xlabel("Time / s")
+   plt.ylabel("power")
+   plt.legend(loc="lower center", bbox_to_anchor=[0.5, 1],ncol=2, fontsize="smaller")
+   st.pyplot(plt)
 
 
 no=len(df)
