@@ -4,9 +4,24 @@ import matplotlib.pyplot as plt
 import scipy.signal as ss
 from scipy import signal
 import streamlit as st
-st.write("hii")
-df = pd.read_csv("priyadharshini_1.txt",skiprows=6,header=None)
 
+st.markdown("<h1 style='text-align:center; color:white;background-color:black;font-size:14pt'>📂 Upload your CSV or Excel file. (200MB max) 📂</h1>", unsafe_allow_html=True)
+uploaded_file = st.file_uploader(label="",type=['csv', 'xlsx'])
+
+
+global df
+if uploaded_file is not None:
+   print(uploaded_file)
+   
+   try:
+      df = pd.read_csv(uploaded_file)
+      st.write(df)
+
+   except Exception as e:       
+     df = pd.read_excel(uploaded_file)       
+     st.write(df)
+           
+df = pd.read_csv("priyadharshini_1.txt",skiprows=6,header=None)
 df.columns=['index','channel1','channel2','channel3','channel4','channel5','channel6','channel7','channel8','acc1','acc2','acc3','time_std','timestamp']
 df.drop(['index'],axis=1,inplace=True)
 
