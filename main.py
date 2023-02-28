@@ -42,20 +42,18 @@ df['channel6'] = (df['channel6']-np.mean(df['channel6']))/np.std(df['channel6'])
 df['channel7'] = (df['channel7']-np.mean(df['channel7']))/np.std(df['channel7'])
 df['channel8'] = (df['channel8']-np.mean(df['channel8']))/np.std(df['channel8'])
 
-samp_freq = 250  # Sample frequency (Hz)
-notch_freq = 50  # Frequency to be removed from signal (Hz)
-quality_factor = 250  # Quality factor
-b_notch, a_notch = signal.iirnotch(notch_freq, quality_factor, samp_freq)
-freq, h = signal.freqz(b_notch, a_notch, fs = samp_freq)
-# apply notch filter to signal
-df['channel1'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel1']))
-df['channel2'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel2']))
-df['channel3'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel3']))
-df['channel4'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel4']))
-df['channel5'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel5']))
-df['channel6'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel6']))
-df['channel7'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel7']))
-df['channel8'] =pd.DataFrame(signal.filtfilt(b_notch, a_notch, df['channel8']))
+
+
+b, a = ss.iirfilter(1, Wn=50, fs=250, btype="high", ftype="butter")
+print(b, a, sep="\n")
+df['channel1'] = ss.filtfilt(b, a, df['channel1'])
+df['channel2'] = ss.filtfilt(b, a, df['channel2'])
+df['channel3'] = ss.filtfilt(b, a, df['channel3'])
+df['channel4'] = ss.filtfilt(b, a, df['channel4'])
+df['channel5'] = ss.filtfilt(b, a, df['channel5'])
+df['channel6'] = ss.filtfilt(b, a, df['channel6'])
+df['channel7'] = ss.filtfilt(b, a, df['channel7'])
+df['channel8'] = ss.filtfilt(b, a, df['channel8'])
 
 st.write(df)
 
