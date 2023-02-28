@@ -415,7 +415,7 @@ theta_totalpower=np.sum([theta_power1,theta_power3,theta_power5,theta_power7,the
 
 import plotly.graph_objects as px
 
-bands=['alpha','beta','gamma','delta','theta']
+bands=['alpha (Relax)','beta (Engaged)','delta (Deep sleep)','gamma (Concentration)','theta (Dowsy)']
 powers=[alpha_totalpower,beta_totalpower,gamma_totalpower,delta_totalpower,theta_totalpower]
 import plotly.express as px
 
