@@ -415,35 +415,13 @@ theta_totalpower=np.sum([theta_power1,theta_power3,theta_power5,theta_power7,the
 
 import plotly.graph_objects as px
 
-x = 'bands'
- 
-plot = px.Figure(data=[px.Bar(
-    name = 'alpha (Relax)',
-    x = x,
-    y = alpha_totalpower
-   ),
-    px.Bar(
-    name = 'beta (Engaged)',
-    x = x,
-    y = beta_totalpower
-   ),
-        px.Bar(
-    name = 'delta (Deep sleep)',
-    x = x,
-    y = delta_totalpower
-   ),                   
-         px.Bar(
-    name = 'gamma (Concentration)',
-    x = x,
-    y = gamma_totalpower
-   ),  
-          px.Bar(
-    name = 'theta (Dowsy)',
-    x = x,
-    y = theta_totalpower
-   ),                       
-])
-                  
-plot.show()
+bands=['alpha','beta','gamma','delta','theta']
+powers=[alpha_totalpower,beta_totalpower,gamma_totalpower,delta_totalpower,theta_totalpower]
+import plotly.express as px
 
-st.write(plot)
+fig = px.bar(df, x=bands, y=powers, color=channels,
+              pattern_shape_sequence=[".", "x", "+"])
+fig.show()
+                  
+
+st.write(fig)
