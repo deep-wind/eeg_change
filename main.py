@@ -23,7 +23,7 @@ if uploaded_file is not None:
 #df = pd.read_csv(uploaded_file,skiprows=6,header=None)
 df.columns=['index','channel1','channel2','channel3','channel4','channel5','channel6','channel7','channel8','acc1','acc2','acc3','time_std','timestamp']
 df.drop(['index'],axis=1,inplace=True)
-
+st.write(df)
 df['channel1'] = ss.detrend(df['channel1'])
 df['channel2'] = ss.detrend(df['channel2'])
 df['channel3'] = ss.detrend(df['channel3'])
@@ -32,7 +32,7 @@ df['channel5'] = ss.detrend(df['channel5'])
 df['channel6'] = ss.detrend(df['channel6'])
 df['channel7'] = ss.detrend(df['channel7'])
 df['channel8'] = ss.detrend(df['channel8'])
-
+st.write(df)
 df['channel1'] = (df['channel1']-np.mean(df['channel1']))/np.std(df['channel1'])
 df['channel2'] = (df['channel2']-np.mean(df['channel2']))/np.std(df['channel2'])
 df['channel3'] = (df['channel3']-np.mean(df['channel3']))/np.std(df['channel3'])
@@ -41,7 +41,7 @@ df['channel5'] = (df['channel5']-np.mean(df['channel5']))/np.std(df['channel5'])
 df['channel6'] = (df['channel6']-np.mean(df['channel6']))/np.std(df['channel6'])
 df['channel7'] = (df['channel7']-np.mean(df['channel7']))/np.std(df['channel7'])
 df['channel8'] = (df['channel8']-np.mean(df['channel8']))/np.std(df['channel8'])
-
+st.write(df)
 
 
 b, a = ss.iirfilter(1, Wn=50, fs=250, btype="high", ftype="butter")
