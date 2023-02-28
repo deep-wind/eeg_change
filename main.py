@@ -369,6 +369,8 @@ left_theta=np.sum([theta_power1,theta_power3,theta_power5,theta_power7])
 right_theta=np.sum([theta_power2,theta_power4,theta_power6,theta_power8])
 
 
+
+
 import plotly.graph_objects as px
 
 x = ['left', 'right']
@@ -405,3 +407,43 @@ plot.show()
 st.write(plot)
 
 
+alpha_totalpower=np.sum([alpha_power1,alpha_power3,alpha_power5,alpha_power7,alpha_power2,alpha_power4,alpha_power6,alpha_power8])
+beta_totalpower=np.sum([beta_power1,beta_power3,beta_power5,beta_power7,beta_power2,beta_power4,beta_power6,beta_power8])
+gamma_totalpower=np.sum([gamma_power1,gamma_power3,gamma_power5,gamma_power7,gamma_power2,gamma_power4,gamma_power6,gamma_power8])
+delta_totalpower=np.sum([delta_power1,delta_power3,delta_power5,delta_power7,delta_power2,delta_power4,delta_power6,delta_power8])
+theta_totalpower=np.sum([theta_power1,theta_power3,theta_power5,theta_power7,theta_power2,theta_power4,theta_power6,theta_power8])
+
+import plotly.graph_objects as px
+
+x = 'bands'
+ 
+plot = px.Figure(data=[px.Bar(
+    name = 'alpha (Relax)',
+    x = x,
+    y = alpha_totalpower
+   ),
+    px.Bar(
+    name = 'beta (Engaged)',
+    x = x,
+    y = beta_totalpower
+   ),
+        px.Bar(
+    name = 'delta (Deep sleep)',
+    x = x,
+    y = delta_totalpower
+   ),                   
+         px.Bar(
+    name = 'gamma (Concentration)',
+    x = x,
+    y = gamma_totalpower
+   ),  
+          px.Bar(
+    name = 'theta (Dowsy)',
+    x = x,
+    y = theta_totalpower
+   ),                       
+])
+                  
+plot.show()
+
+st.write(plot)
