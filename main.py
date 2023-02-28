@@ -419,7 +419,7 @@ bands=['alpha','beta','gamma','delta','theta']
 powers=[alpha_totalpower,beta_totalpower,gamma_totalpower,delta_totalpower,theta_totalpower]
 import plotly.express as px
 
-fig = px.bar(df, x=bands, y=powers, color=channels,
+fig = px.bar(df, x=bands, y=powers, color=bands,
               pattern_shape_sequence=[".", "x", "+"])
 fig.show()
                   
