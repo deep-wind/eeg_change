@@ -52,6 +52,7 @@ chan8 = (df['channel8']-np.mean(df['channel8']))/np.std(df['channel8'])
 # df['channel7'] = (df['channel7']-np.mean(df['channel7']))/np.std(df['channel7'])
 # df['channel8'] = (df['channel8']-np.mean(df['channel8']))/np.std(df['channel8'])
 st.write(df)
+i=0
 for column in [chan1, chan2,chan3, chan4,chan5, chan6,chan7, chan8]:    
     plt.plot(column,label="channel"+str(i))
     plt.legend(loc='best')
