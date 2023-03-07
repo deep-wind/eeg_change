@@ -33,30 +33,87 @@ df['channel6'] = ss.detrend(df['channel6'])
 df['channel7'] = ss.detrend(df['channel7'])
 df['channel8'] = ss.detrend(df['channel8'])
 st.write(df)
-df['channel1'] = (df['channel1']-np.mean(df['channel1']))/np.std(df['channel1'])
-df['channel2'] = (df['channel2']-np.mean(df['channel2']))/np.std(df['channel2'])
-df['channel3'] = (df['channel3']-np.mean(df['channel3']))/np.std(df['channel3'])
-df['channel4'] = (df['channel4']-np.mean(df['channel4']))/np.std(df['channel4'])
-df['channel5'] = (df['channel5']-np.mean(df['channel5']))/np.std(df['channel5'])
-df['channel6'] = (df['channel6']-np.mean(df['channel6']))/np.std(df['channel6'])
-df['channel7'] = (df['channel7']-np.mean(df['channel7']))/np.std(df['channel7'])
-df['channel8'] = (df['channel8']-np.mean(df['channel8']))/np.std(df['channel8'])
-st.write(df)
 
+chan1 = (df['channel1']-np.mean(df['channel1']))/np.std(df['channel1'])
+chan2 = (df['channel2']-np.mean(df['channel2']))/np.std(df['channel2'])
+chan3 = (df['channel3']-np.mean(df['channel3']))/np.std(df['channel3'])
+chan4 = (df['channel4']-np.mean(df['channel4']))/np.std(df['channel4'])
+chan5 = (df['channel5']-np.mean(df['channel5']))/np.std(df['channel5'])
+chan6 = (df['channel6']-np.mean(df['channel6']))/np.std(df['channel6'])
+chan7 = (df['channel7']-np.mean(df['channel7']))/np.std(df['channel7'])
+chan8 = (df['channel8']-np.mean(df['channel8']))/np.std(df['channel8'])
+
+# df['channel1'] = (df['channel1']-np.mean(df['channel1']))/np.std(df['channel1'])
+# df['channel2'] = (df['channel2']-np.mean(df['channel2']))/np.std(df['channel2'])
+# df['channel3'] = (df['channel3']-np.mean(df['channel3']))/np.std(df['channel3'])
+# df['channel4'] = (df['channel4']-np.mean(df['channel4']))/np.std(df['channel4'])
+# df['channel5'] = (df['channel5']-np.mean(df['channel5']))/np.std(df['channel5'])
+# df['channel6'] = (df['channel6']-np.mean(df['channel6']))/np.std(df['channel6'])
+# df['channel7'] = (df['channel7']-np.mean(df['channel7']))/np.std(df['channel7'])
+# df['channel8'] = (df['channel8']-np.mean(df['channel8']))/np.std(df['channel8'])
+st.write(df)
+for column in [chan1, chan2,chan3, chan4,chan5, chan6,chan7, chan8]:    
+    plt.plot(column,label="channel"+str(i))
+    plt.legend(loc='best')
+    st.write(plt)
+    i+=1
 
 b, a = ss.iirfilter(1, Wn=50, fs=250, btype="high", ftype="butter")
 print(b, a, sep="\n")
-df['channel1'] = ss.filtfilt(b, a, df['channel1'])
-df['channel2'] = ss.filtfilt(b, a, df['channel2'])
-df['channel3'] = ss.filtfilt(b, a, df['channel3'])
-df['channel4'] = ss.filtfilt(b, a, df['channel4'])
-df['channel5'] = ss.filtfilt(b, a, df['channel5'])
-df['channel6'] = ss.filtfilt(b, a, df['channel6'])
-df['channel7'] = ss.filtfilt(b, a, df['channel7'])
-df['channel8'] = ss.filtfilt(b, a, df['channel8'])
+# df['channel1'] = ss.filtfilt(b, a, df['channel1'])
+# df['channel2'] = ss.filtfilt(b, a, df['channel2'])
+# df['channel3'] = ss.filtfilt(b, a, df['channel3'])
+# df['channel4'] = ss.filtfilt(b, a, df['channel4'])
+# df['channel5'] = ss.filtfilt(b, a, df['channel5'])
+# df['channel6'] = ss.filtfilt(b, a, df['channel6'])
+# df['channel7'] = ss.filtfilt(b, a, df['channel7'])
+# df['channel8'] = ss.filtfilt(b, a, df['channel8'])
 
+chan1 = ss.filtfilt(b, a, chan1)
+chan2 = ss.filtfilt(b, a, chan2)
+chan3 = ss.filtfilt(b, a, chan3)
+chan4 = ss.filtfilt(b, a, chan4)
+chan5 = ss.filtfilt(b, a, chan5)
+chan6 = ss.filtfilt(b, a, chan6)
+chan7 = ss.filtfilt(b, a, chan7)
+chan8 = ss.filtfilt(b, a, chan8)
 st.write(df)
+i=1
+for column in [zchan1, zchan2,zchan3, zchan4,zchan5, zchan6,zchan7, zchan8]:    
+    plt.plot(column,label="channel"+str(i))
+    plt.legend(loc='best')
+    st.write(plt)
+    i+=1
+      
+chan1[np.abs(chan1)>3] = 0
+chan2[np.abs(chan2)>3] = 0
+chan3[np.abs(chan3)>3] = 0
+chan4[np.abs(chan4)>3] = 0
+chan5[np.abs(chan5)>3] = 0
+chan6[np.abs(chan6)>3] = 0
+chan7[np.abs(chan7)>3] = 0
+chan8[np.abs(chan8)>3] = 0
+i=1
+for column in [chan1, chan2,chan3, chan4,chan5, chan6,chan7, chan8]:    
+    plt.plot(column,label="channel"+str(i))
+    plt.legend(loc='best')
+    st.write(plt)
+    i+=1
 
+df['channel1'] = chan1
+df['channel2'] = chan2
+df['channel3'] = chan3
+df['channel4'] = chan4
+df['channel5'] = chan5
+df['channel6'] = chan6
+df['channel7'] = chan7
+df['channel8'] = chan8
+
+for column in df[['channel1', 'channel2','channel3', 'channel4','channel5', 'channel6','channel7', 'channel8']]:    
+    plt.plot(df[column],label=column)
+    plt.legend(loc='best')
+    st.write(plt)
+   
 from scipy.integrate import simps
 import scipy.stats as sst
 from matplotlib.mlab import psd
