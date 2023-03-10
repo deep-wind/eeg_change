@@ -21,7 +21,7 @@ import plotly.express as px
 from sklearn.preprocessing import StandardScaler
 
 
-if(st.submit("PREDICT")):
+if(st.button("PREDICT")):
    if uploaded_file is not None:
       print(uploaded_file)
 
